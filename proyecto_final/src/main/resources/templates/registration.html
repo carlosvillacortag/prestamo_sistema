@@ -1,0 +1,88 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{plantilla/template :: head}">
+<meta charset="UTF-8">
+<title>Registrarse</title>
+</head>
+<body>
+	<header th:replace="~{plantilla/template :: header}"></header>
+
+	
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-6 mx-auto">
+				<form method="post" role="form" th:action="@{/registration}"
+					th:object="${usuario}">
+					<h1>Formulario de Registro</h1>
+					<hr>
+					<div th:if="${param.error}">
+						<div class="alert alert-danger">Hubo un error al registrar -
+							Intente nuevamente</div>
+					</div>
+					<div th:if="${param.success}">
+						<div class="alert alert-info">Registro Exitoso!!!</div>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" for="mail">Correo</label> <input
+							class="form-control" id="mail" name="mail" type="email">
+						<p class="text-danger" th:errors="*{mail}"
+							th:if="${#fields.hasErrors('mail')}"></p>
+					</div>
+
+					<div class="mb-3">
+						<label class="col-sm-2 col-form-label" for="password">Contraseña</label>
+						<input class="form-control" id="password" name="password"
+							type="password">
+						<p class="text-danger" th:errors="*{password}"
+							th:if="${#fields.hasErrors('password')}"></p>
+					</div>
+					<br> <br>
+
+
+					<div class="mb-3">
+						<label class="form-label" for="nombres">Nombres</label> <input
+							class="form-control" id="nombres" name="nombres" type="text">
+						<p class="text-danger" th:errors="*{nombres}"
+							th:if="${#fields.hasErrors('nombres')}"></p>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" for="apellidos">Apellidos</label> <input
+							class="form-control" id="apellidos" name="apellidos" type="text">
+						<p class="text-danger" th:errors="*{apellidos}"
+							th:if="${#fields.hasErrors('apellidos')}"></p>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" for="dni">DNI</label> <input
+							class="form-control" id="dni" name="dni" type="text">
+						<p class="text-danger" th:errors="*{dni}"
+							th:if="${#fields.hasErrors('dni')}"></p>
+					</div>
+
+
+					<div class="mb-3">
+						<label class="form-label" for="direccion">Direccion</label> <input
+							class="form-control" id="direccion" name="direccion" type="text">
+						<p class="text-danger" th:errors="*{direccion}"
+							th:if="${#fields.hasErrors('direccion')}"></p>
+					</div>
+
+
+					<div class="mb-3">
+						<button class="btn btn-primary mb-3" type="submit">Registro</button>
+						<a th:href="@{/login}">
+							<button type="button" class="btn btn-success mb-3">Volver
+								a Login</button>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="~{plantilla/template :: footer}"></footer>
+
+</body>
+</html>

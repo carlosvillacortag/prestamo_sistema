@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<link
+	href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" media="screen">
+</head>
+<body>
+	<!-- Barra navegacion / Header -->
+	<header th:fragment="header">
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container-fluid">
+				<img th:src="@{/images/sabuesos.png}" alt="" width="100"
+					height="100" class="d-inline-block align-text-top" /> <a
+					class="navbar-brand" href="/index/">&nbsp;&nbsp;Prestamistas
+					Sabuesos&nbsp;&nbsp;</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" th:href="@{/index/}">Inicio</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/error}">Contacto</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Quienes
+								somos</a></li>
+
+					</ul>
+
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<!-- CONTENIDO -->
+	<div class="container">
+		<div class="row">
+
+
+
+			<!-- FORM  -->
+			<div class="col-md-12">
+
+				<form class="form-horizontal" id="form-edit-client">
+					<fieldset>
+
+						<!-- Form Name -->
+						<legend>Client</legend>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="client-name">Name</label>
+							<div class="col-md-4">
+								<input id="client-name" name="client-name" type="text"
+									placeholder="your client's name" class="form-control input-md">
+								<span class="help-block">Full name of your customer</span>
+							</div>
+						</div>
+
+						<!-- Prepended text-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="client-email">Email</label>
+							<div class="col-md-4">
+								<div class="input-group">
+									<span class="input-group-addon">@</span> <input
+										id="client-email" name="client-email" class="form-control"
+										placeholder="yourname@yourdomain.com" type="text">
+								</div>
+								<p class="help-block">Email of your client</p>
+							</div>
+						</div>
+
+
+
+						<!-- Multiple Radios -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="client-status">Client
+								status</label>
+							<div class="col-md-4">
+								<div class="radio">
+									<label for="client-status-0"> <input type="radio"
+										name="client-status" id="client-status-0" value="active"
+										checked="checked"> Active
+									</label>
+								</div>
+								<div class="radio">
+									<label for="client-status-1"> <input type="radio"
+										name="client-status" id="client-status-1" value="inactive">
+										Inactive
+									</label>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- Button -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="btn-save"></label>
+							<div class="col-md-4">
+								<button id="btn-save" name="btn-save" class="btn btn-success">Save</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+
+
+			</div>
+
+
+
+
+			<!-- LIST -->
+			<div class=col-md-12>
+
+				<form id="form-list-client">
+					<legend>List of clients</legend>
+
+					<div class="pull-right">
+						<a class="btn btn-default-btn-xs btn-primary"><i
+							class="glyphicon glyphicon-refresh"></i> Refresh</a> <a
+							class="btn btn-default-btn-xs btn-success"><i
+							class="glyphicon glyphicon-plus"></i> New</a>
+					</div>
+					<table class="table table-bordered table-condensed table-hover">
+						<thead>
+							<tr>
+								<td>Name</td>
+								<th>Email</th>
+								<th>Status</th>
+								<th>Actions</th>
+							</tr>
+
+						</thead>
+						<tbody id="form-list-client-body">
+							<tr>
+								<td>Eduardo</td>
+								<td>eluz@counterpath.com</td>
+								<td>Active</td>
+								<td><a title="view this user"
+									class="btn btn-default btn-sm "> <i
+										class="glyphicon glyphicon-eye-open text-primary"></i>
+								</a> <a title="edit this user" class="btn btn-default btn-sm ">
+										<i class="glyphicon glyphicon-edit text-primary"></i>
+								</a> <a title="delete this user" class="btn btn-default btn-sm ">
+										<i class="glyphicon glyphicon-trash text-danger"></i>
+								</a> <a title="check credit" class="btn btn-default btn-sm "> <i
+										class="glyphicon glyphicon-duplicate text-danger"></i>
+								</a> <a title="generate invoice" class="btn btn-default btn-sm ">
+										<i class="glyphicon glyphicon-level-up bg-success"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+
+			</div>
+
+
+			<br>
+
+			<!-- view -->
+
+			<div class="col-md-12">
+
+				<legend>View client</legend>
+
+				<div>
+
+					<div class2=" col-md-9 col-lg-9 ">
+						<table class="table table-user-information">
+							<tbody>
+								<tr>
+									<td>Name:</td>
+									<td>Andre Silva</td>
+								</tr>
+								<tr>
+									<td>Email</td>
+									<td><a href="mailto:info@support.com">info@support.com</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+				<div class="panel with-nav-tabs panel-default">
+					<div class="panel-heading">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab1default" data-toggle="tab">Default
+									1</a></li>
+							<li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
+
+							<li><a href="#tab3default" data-toggle="tab">Default 3</a></li>
+							<!--
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#tab4default" data-toggle="tab">Default 4</a></li>
+                                    <li><a href="#tab5default" data-toggle="tab">Default 5</a></li>
+                                </ul>
+                            </li>
+                            -->
+						</ul>
+					</div>
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="tab1default">Default
+								1</div>
+							<div class="tab-pane fade" id="tab2default">Default 2</div>
+							<div class="tab-pane fade" id="tab3default">Default 3</div>
+							<!--
+                        <div class="tab-pane fade" id="tab4default">Default 4</div>
+                        <div class="tab-pane fade" id="tab5default">Default 5</div>
+                        -->
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+
+	<!-- Pie de pag / Footer -->
+	<footer th:fragment="footer">
+		<div class="bottom section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="copyright">
+							<p>
+								© <span>2023</span> <a href="/login" class="transition">Cibertec
+									EA - Prestamos Sabuesos</a> Todos los derechos reservados
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
+
+</body>
+</html>

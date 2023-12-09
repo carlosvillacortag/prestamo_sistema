@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+<meta charset="UTF-8">
+<title>Administrador</title>
+</head>
+<body>
+<header th:replace="plantilla/template_admin :: header"></header>
+
+<div class="container my-2">
+    <h1>Panel de Administrador</h1>
+    <h2>Listado de Usuarios</h2>
+    <hr>
+    <br>
+    <a th:href="@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Agregar Usuario</a>
+ 
+    <br>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+        	<th>Id</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Direccion</th>
+            <th>Fecha de Registro</th>
+            <th>Correo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usuario : ${listaUsuarios}">
+        	<td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.nombres}"></td>
+            <td th:text="${usuario.apellidos}"></td>
+            <td th:text="${usuario.dni}"></td>
+            <td th:text="${usuario.direccion}"></td>
+            <td th:text="${usuario.registro}"></td>
+            <td th:text="${usuario.mail}"></td>
+            <td th:text="${usuario.grupo}"></td>
+            
+            <td> <a th:href="@{/showUpdateUserForm/{id}(id=${usuario.id})}" class="btn btn-primary">Actualizar</a>
+                <a th:href="@{/deleteUser/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <div th:if="${totalPaginas>1}">
+		<div class="row col-sm-10">
+			<div class="col-sm-2">
+				Total Registros: [[${totalPersonas}]] 
+			</div>
+			<div class="col-sm-1">
+				<span th:each="i: ${#numbers.sequence(1, totalPaginas)}">
+					<a th:if="${paginaActual != i}" th:href="@{/page/{pageNumber}(pageNumber=${i})}">[[${i}]]</a>
+					<span th:unless="${paginaActual != i}">[[${i}]]</span>
+				</span>
+			</div>
+		</div>
+	</div>
+    
+</div>
+<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
+
+
