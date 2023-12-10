@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="UTF-8">
 <title>ProyectoPrestamos</title>
@@ -13,15 +14,13 @@
 
 
 <body>
-	<!-- Barra navegacion / Header -->
+<!-- Barra navegacion / Header -->
 	<header th:fragment="header">
-
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
-				<img th:src="@{/images/sabuesos.png}" alt="" width="100"
-					height="100" class="d-inline-block align-text-top" /> <a
-					class="navbar-brand" href="/index/">&nbsp;&nbsp;Prestamistas
-					Sabuesos&nbsp;&nbsp;</a>
+				<img th:src="@{/images/sabuesos.png}" width="60" height="60"
+					class="d-inline-block align-text-top" /> <a class="navbar-brand"
+					href="/index/">&nbsp;&nbsp;Prestamistas Sabuesos</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -31,13 +30,60 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" th:href="@{/index/}">Inicio</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{/error}">Contacto</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Quienes
-								somos</a></li>
+							aria-current="page" href="/index/">Inicio</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+						<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Jefes </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Ver Listado de Jefes</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Something else
+										here</a></li>
+							</ul></li>
 
+						<li sec:authorize="hasRole({'ADMIN','JEFE_PRESTAMISTAS'})" class="nav-item dropdown"><a 
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Prestamistas </a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Ver Listado de Prestamistas</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Something else
+										here</a></li>
+							</ul></li>
+
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Prestatarios&nbsp;&nbsp;</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Ver Listado de prestatarios</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Something else
+										here</a></li>
+							</ul></li>
+							
+							
+							
 					</ul>
-
+					
+					<div id="navbar" class="collapse navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li  sec:authorize="isAuthenticated()"><a
+								th:href="@{/logout}">Cerrar sesión</a></li>
+						</ul>
+					</div>
+					
+					<form class="d-flex">
+						<input class="form-control me-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
 				</div>
 			</div>
 		</nav>

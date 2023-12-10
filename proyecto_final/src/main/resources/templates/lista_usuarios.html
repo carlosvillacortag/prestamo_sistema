@@ -36,8 +36,7 @@
             <td th:text="${usuario.direccion}"></td>
             <td th:text="${usuario.registro}"></td>
             <td th:text="${usuario.mail}"></td>
-            <td th:text="${usuario.grupo}"></td>
-            
+                        
             <td> <a th:href="@{/showUpdateUserForm/{id}(id=${usuario.id})}" class="btn btn-primary">Actualizar</a>
                 <a th:href="@{/deleteUser/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
             </td>

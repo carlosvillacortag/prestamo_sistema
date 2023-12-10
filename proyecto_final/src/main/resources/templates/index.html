@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="plantilla/template :: head">
 <meta charset="UTF-8">
 <title>Prestamos Sabuesos</title>
@@ -8,13 +9,12 @@
 <header th:replace="plantilla/template :: header"></header>
 
 <div class="container my-2">
+<br>
     <h1>BIENVENIDO DE VUELTA</h1>
     <br>
     <h3></h3>
     <hr>
     <br>
-    <a th:href="@{/showNewUserForm}" class="btn btn-primary btn-sm mb-3"> Agregar Usuario</a>
-        
 </div>
 <footer th:replace="plantilla/template :: footer"></footer>
 </body>

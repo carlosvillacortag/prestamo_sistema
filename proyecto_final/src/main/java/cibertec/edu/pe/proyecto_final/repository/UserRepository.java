@@ -6,7 +6,4 @@ import cibertec.edu.pe.proyecto_final.model.Usuario;
 
 public interface UserRepository extends JpaRepository<Usuario, Integer>{
 
-	Usuario findByRol(int idRol);
-	
-	Usuario findByGrupo(int idGrupo);
 }
