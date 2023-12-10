@@ -6,6 +6,4 @@ import cibertec.edu.pe.proyecto_final.model.Cuenta;
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 
-	Cuenta findByNumeroCuenta(String numeroCuenta);
-
 }

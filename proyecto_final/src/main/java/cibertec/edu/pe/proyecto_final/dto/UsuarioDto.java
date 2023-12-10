@@ -24,19 +24,16 @@ public class UsuarioDto {
 
 	@NotEmpty(message = "Ingrese una contraseña valida")
 	private String password;
-
-	@NotEmpty(message = "Ingrese su direccion actual")
-	private String direccion;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
 	private LocalDateTime registro = LocalDateTime.now();
 
+	@NotEmpty(message = "Ingrese su direccion actual")
+	private String direccion;
+
 	@NotEmpty(message = "Ingrese un correo valido")
 	@Email
 	private String mail;
 
-	@NotEmpty(message = "Ingrese su grupo")
-	private int grupo;
-	
 }

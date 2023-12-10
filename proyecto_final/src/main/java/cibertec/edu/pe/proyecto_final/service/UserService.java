@@ -15,6 +15,10 @@ public interface UserService {
 	void guardarUsuario(Usuario usuario);
 
 	Usuario obtenerUsuarioPorId(int id);
+	
+	Usuario obtenerUsuarioPorRol(int idRol);
+	
+	Usuario obtenerUsuarioPorGrupo(int idGrupo);
 
 	void eliminarUsuarioPorId(int id);
 

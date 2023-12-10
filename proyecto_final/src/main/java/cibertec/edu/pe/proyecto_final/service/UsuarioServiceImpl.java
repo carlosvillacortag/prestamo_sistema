@@ -20,7 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -28,13 +28,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void saveUsuario(UsuarioDto usuarioDto) {
 		Rol rol = rolRepository.findByNombre("PRESTATARIO");
-
+		// TODO cuentas bancarias
+		//Cuenta cuenta = null;
+	
 		if (rol == null)
 			rol = rolRepository.save(new Rol("PRESTATARIO"));
 
 		Usuario newUsuario = new Usuario(usuarioDto.getNombres(), usuarioDto.getApellidos(), usuarioDto.getDni(),
-				passwordEncoder.encode(usuarioDto.getPassword()), usuarioDto.getDireccion(), usuarioDto.getRegistro(),
-				usuarioDto.getMail(), usuarioDto.getGrupo(), Arrays.asList(rol));
+				passwordEncoder.encode(usuarioDto.getPassword()), usuarioDto.getRegistro(), usuarioDto.getDireccion(), 
+				usuarioDto.getMail(), Arrays.asList(rol));
 
 		usuarioRepository.save(newUsuario);
 	}

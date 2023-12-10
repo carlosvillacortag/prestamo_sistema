@@ -48,6 +48,18 @@ public class UserServiceImpl implements UserService{
 			}
 
 		@Override
+		// Método para buscar usuario por Id
+		public Usuario obtenerUsuarioPorRol(int idRol) {
+			return userRepository.findByRol(idRol);
+		}
+		
+		@Override
+		// Método para buscar usuario por Id
+		public Usuario obtenerUsuarioPorGrupo(int idGrupo) {
+			return userRepository.findByGrupo(idGrupo);
+		}
+		
+		@Override
 			// Método para eliminar usuario por Id
 			public void eliminarUsuarioPorId(int id) {
 				userRepository.deleteById(id);

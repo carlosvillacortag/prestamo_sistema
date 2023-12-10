@@ -2,16 +2,18 @@ package cibertec.edu.pe.proyecto_final.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -36,17 +38,22 @@ public class Cuota {
 	@Column(nullable=false)
 	private BigDecimal montoPago;
 	
-	@Column(nullable=false)
-	private int numero;
+	@Column(nullable=true)
+	private BigDecimal mora;
 	
-	@OneToMany(mappedBy = "prestamos")
-	private List<Prestamo> prestamos;
+	@Column(nullable=false)
+	private int numeroCuota;
+	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "prestamo_id", referencedColumnName="id")
+	private Prestamo prestamo;
 
-	public Cuota(LocalDateTime fechaPago, BigDecimal montoPago, int numero,List<Prestamo> prestamos) {
+	public Cuota(LocalDateTime fechaPago, BigDecimal montoPago, BigDecimal mora, int numeroCuota, Prestamo prestamo) {
 		this.fechaPago = fechaPago;
 		this.montoPago = montoPago;
-		this.numero = numero;
-		this.prestamos = prestamos;
+		this.mora = mora;
+		this.numeroCuota = numeroCuota;
+		this.prestamo = prestamo;
 				
 	}
 	

@@ -10,8 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
@@ -27,7 +25,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuarios")
 @NoArgsConstructor
 public class Usuario{
@@ -59,27 +56,31 @@ public class Usuario{
 	@Column(nullable = false, unique = true)
 	private String mail;
 		
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "grupos", joinColumns = @JoinColumn(name = "grupos_id", referencedColumnName = "id"))
-	@Column(nullable = false)
-	private int grupo;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "grupos_id", referencedColumnName = "id")
+    private Grupo grupos;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "usuarios_roles", 
 		joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
 		inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
-	private List<Rol> roles;	
-		
-	public Usuario(String nombres, String apellidos, String dni, String password,String direccion, LocalDateTime registro,
-			 String mail, int grupo, List<Rol> roles) {
+	private List<Rol> roles;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "usuarios_cuentas", 
+		joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
+		inverseJoinColumns = @JoinColumn(name = "cuentas_id", referencedColumnName = "id"))
+	private List<Cuenta> cuentas;	
+	
+	public Usuario(String nombres, String apellidos, String dni, String password, LocalDateTime registro,String direccion,
+			 String mail, List<Rol> roles) {
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.dni = dni;
 		this.password = password;
-		this.direccion = direccion;
 		this.registro= registro;
+		this.direccion = direccion;
 		this.mail = mail;
-		this.grupo = grupo;
 		this.roles = roles;
 			
 	}

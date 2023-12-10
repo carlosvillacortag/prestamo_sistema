@@ -22,10 +22,10 @@ public class Cuenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String numeroCuenta;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String banco;
 
 	@Column(nullable = false, unique = true)
