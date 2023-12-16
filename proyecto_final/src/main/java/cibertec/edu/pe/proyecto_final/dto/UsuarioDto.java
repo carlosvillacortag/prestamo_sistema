@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import cibertec.edu.pe.proyecto_final.model.Grupo;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
@@ -31,6 +32,8 @@ public class UsuarioDto {
 
 	@NotEmpty(message = "Ingrese su direccion actual")
 	private String direccion;
+	
+	private Grupo grupos = null;
 
 	@NotEmpty(message = "Ingrese un correo valido")
 	@Email

@@ -56,7 +56,7 @@ public class Usuario{
 	@Column(nullable = false, unique = true)
 	private String mail;
 		
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "grupos_id", referencedColumnName = "id")
     private Grupo grupos;
 	
@@ -73,7 +73,7 @@ public class Usuario{
 	private List<Cuenta> cuentas;	
 	
 	public Usuario(String nombres, String apellidos, String dni, String password, LocalDateTime registro,String direccion,
-			 String mail, List<Rol> roles) {
+			 String mail, Grupo grupos, List<Rol> roles) {
 		this.nombres = nombres;
 		this.apellidos = apellidos;
 		this.dni = dni;
@@ -81,6 +81,7 @@ public class Usuario{
 		this.registro= registro;
 		this.direccion = direccion;
 		this.mail = mail;
+		this.grupos = grupos;
 		this.roles = roles;
 			
 	}

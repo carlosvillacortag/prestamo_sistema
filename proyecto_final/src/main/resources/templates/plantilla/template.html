@@ -12,10 +12,9 @@
 <link href="/css/style.css" rel="stylesheet">
 </head>
 
-
 <body>
-<!-- Barra navegacion / Header -->
-	<header th:fragment="header">
+	<!-- Barra navegacion / Header -->
+	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
 				<img th:src="@{/images/sabuesos.png}" width="60" height="60"
@@ -28,61 +27,38 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/index/">Inicio</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-						<li sec:authorize="hasRole('ADMIN')" class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Jefes </a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Ver Listado de Jefes</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
-							</ul></li>
-
-						<li sec:authorize="hasRole({'ADMIN','JEFE_PRESTAMISTAS'})" class="nav-item dropdown"><a 
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Prestamistas </a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Ver Listado de Prestamistas</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
-							</ul></li>
-
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Prestatarios&nbsp;&nbsp;</a>
-							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Ver Listado de prestatarios</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
-							</ul></li>
-							
-							
-							
-					</ul>
-					
 					<div id="navbar" class="collapse navbar-collapse">
-						<ul class="nav navbar-nav">
-							<li  sec:authorize="isAuthenticated()"><a
-								th:href="@{/logout}">Cerrar sesión</a></li>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/index/">Inicio</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Quienes
+									Somos</a></li>
 						</ul>
-					</div>
+						</div>
+						
+				
+						<div id="navbar" class="collapse navbar-collapse">
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item"><a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{/index/admin}">Gestion de Usuarios</a></li>
+							</ul>
+						
+						</div>
+
+					<div id="navbar" class="collapse navbar-collapse">
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item"><a class="nav-link" sec:authorize="hasRole('PRESTATARIO')" th:href="@{/index/prestatario}">Gestion de Usuarios</a></li>
+							</ul>
+						
+						</div>
 					
+					
+					<!-- boton de cierre de sesion -->
 					<form class="d-flex">
-						<input class="form-control me-2" type="search"
-							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success" type="submit">Search</button>
+						<div sec:authorize="isAuthenticated()" id="navbar"
+							class="collapse navbar-collapse">
+							<a th:href="@{/logout}" class="btn btn-primary">Cerrar Sesion</a>
+						</div>
+
 					</form>
 				</div>
 			</div>
@@ -90,8 +66,6 @@
 	</header>
 
 	<!-- Contenido -->
-
-
 	<hr>
 	<br>
 	<br>
@@ -121,6 +95,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
 		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>
